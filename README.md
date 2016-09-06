@@ -1,7 +1,7 @@
 # Node & Bootstrap Skeleton
-Starter app for rapid Node & Bootstrap development.
-Set to use a PostgreSQL database and Redis for session storage.
-AES for encryption, bcrypt for hashing.
+Starter app for rapid Node Express & Bootstrap development.
+Node is set to EJS for templating, a PostgreSQL database and Redis for session storage.
+It also has tools setup to use AES for encryption, bcrypt for hashing.
 
 ## Quick Start:
 1. Clone/Download this entire project
@@ -78,6 +78,10 @@ redis_tool.get(r_key, function (err, data) {
 let session_tool = require('../bin/session_tool');
 ```
 to the top of your routes files and use session variables according to the [express-session documentation] (https://github.com/expressjs/session/blob/master/README.md).  
+
+* Other packages already included for use:
+  * [bcrypt-nodejs] (https://www.npmjs.com/package/bcrypt-nodejs) for hashing passwords
+  * [request] (https://www.npmjs.com/package/request) for super easy external API calls
 
 ## License
 The MIT License (MIT)
