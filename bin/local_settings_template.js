@@ -7,16 +7,16 @@ let local_settings = {
   pg_user: null,
   pg_db: null,
   pg_pass: null,
-  pg_host: null,
-  pg_port: null,
-  pg_ssl: null,
-  aes_alg: null,
-  aes_pass: null,
-  sesh_name: null,
-  sesh_secret: null,
-  redis_port: null,
-  redis_host: null,
-  redis_password: null
+  pg_host: null, //localhost for local
+  pg_port: null, //usually 5432 for local
+  pg_ssl: null, //usually false for local and true for cloud
+  aes_alg: 'aes-256-ctr', //there are others if you wanna Google the NodeJS crypto library
+  aes_pass: null, //pick a really long and secure string
+  sesh_name: null, //cookie name
+  sesh_secret: null, //pick a really long and secure string
+  redis_port: null, //usually 6379 for local
+  redis_host: null, //localhost for local
+  redis_password: null //usually null for local
 };
 
 module.exports = local_settings;

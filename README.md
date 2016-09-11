@@ -1,7 +1,7 @@
 # Node & Bootstrap Skeleton
-Starter app for rapid Node & Bootstrap development.
-Set to use a PostgreSQL database and Redis for session storage.
-AES for encryption, bcrypt for hashing.
+Starter app for rapid Node Express & Bootstrap development.
+Node is set to EJS for templating, a PostgreSQL database and Redis for session storage.
+It also has tools setup to use AES for encryption, bcrypt for hashing.
 
 ## Quick Start:
 1. Clone/Download this entire project
@@ -17,35 +17,29 @@ AES for encryption, bcrypt for hashing.
 * [NodeJS] (https://nodejs.org/en/download/) 6.x with [npm] (https://docs.npmjs.com/getting-started/installing-node) 3.8 or higher
 
 ## Included Tools:
-* [db_pool.js] (./bin/db_pool.js) handles a PostgreSQL database connection pool. It uses the [pg] (https://www.npmjs.com/package/pg) npm package. Quick usage example:
+* [pg_tool.js] (./bin/pg_tool.js) handles PostgreSQL database queries. It uses the [pg] (https://www.npmjs.com/package/pg) npm package. Quick usage example:
 ```
-let db_pool = require('../bin/db_pool'); // importing into a route file
+let pg_tool = require('../bin/pg_tool'); // importing into a route file
 
-db_pool.connect(function(err, client, done) { // getting a db connection from the pool
-  if (err) {
-     // error fetching connection from pool
+let id = 5;
+pg_tool.query('SELECT * FROM stuff WHERE id=$1', [id], function(error, rows) {
+  if (error) {
+    let result = {
+      "status": 500,
+      "error": error
+    };
+    res.send(result);
   }
   else {
-    let id = 5; // arbitrary parameter
-    client.query('SELECT * FROM users WHERE id=$1', [id], function(err, result) { // make sql query
-      done(); // release connection back into pool
-      if (err) {
-        // sql query error
-      }
-      else {
-        // sql query successful
-        if (result.rows[0]) {
-          // query returned something
-        }
-        else {
-          // query returned nothing
-        }
-      }
-    });
+    let result = {
+      "status": 200,
+      "data": rows
+    };
+    res.send(result);
   }
 });
 ```
-* [aes_tool.js] (./bin/aes_tool.js) allows simple AES encryption/decryption. It uses the built in [crypto] (https://nodejs.org/api/crypto.html) NodeJS library. Quick usage example:
+* [aes_tool.js] (./bin/aes_tool.js) allows simple AES encryption/decryption of strings or numbers. It uses the built in [crypto] (https://nodejs.org/api/crypto.html) NodeJS library. Quick usage example:
 ```
 let aes_tool = require('../bin/aes_tool'); // importing into a route file
 
@@ -78,6 +72,10 @@ redis_tool.get(r_key, function (err, data) {
 let session_tool = require('../bin/session_tool');
 ```
 to the top of your routes files and use session variables according to the [express-session documentation] (https://github.com/expressjs/session/blob/master/README.md).  
+
+* Other packages already included for use:
+  * [bcrypt-nodejs] (https://www.npmjs.com/package/bcrypt-nodejs) for hashing passwords
+  * [request] (https://www.npmjs.com/package/request) for super easy external API calls
 
 ## License
 The MIT License (MIT)

@@ -4,7 +4,7 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-let db_pool = require('./bin/db_pool');
+let pg_tool = require('./bin/pg_tool');
 let redis_tool = require('./bin/redis_tool');
 let session_tool = require('./bin/session_tool');
 
