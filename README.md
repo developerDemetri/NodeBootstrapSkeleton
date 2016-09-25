@@ -10,7 +10,7 @@ It also has tools setup to use AES for encryption, bcrypt for hashing.
 4. Run `npm install` to install the basic dependencies, the `npm start` to test out the app
 5. Make something awesome (:
 
-## Suggestions for local development:
+## Requirements for local development:
 * [PostgreSQL] (https://www.postgresql.org/download/) 9.x
 * [pgAdmin] (https://www.pgadmin.org/download/) 3 or 4
 * [Redis] (http://redis.io/download) 3.x
@@ -87,7 +87,7 @@ to the top of your routes files and use session variables according to the [expr
       console.log('invalid input');
       // reject invalid request
     }
-  }
+  });
 ```
 * Other packages already included for use:
   * [bcrypt-nodejs] (https://www.npmjs.com/package/bcrypt-nodejs) for hashing passwords
