@@ -72,7 +72,23 @@ redis_tool.get(r_key, function (err, data) {
 let session_tool = require('../bin/session_tool');
 ```
 to the top of your routes files and use session variables according to the [express-session documentation] (https://github.com/expressjs/session/blob/master/README.md).  
+* [validator_tool.js] (./bin/validator_tool.js) provides simple input validation. It checks that the input variable exists, is the correct object type, and checks strings against the provided regex. Common usage example:
+```
+  let validator_tool = require('../bin/validator_tool'); // importing into a route file
+  let checkInput = validator_tool.checkInput; //only method so far
 
+  let name_re = /^\w{3,63}$/; //simple regex for usernames
+  router.get('/', function(req, res) {
+    if (checkInput(req.body.username, 'string', name_re) && checkInput(req.body.id_num, 'number', null)) {
+      console.log('valid input');
+      // process valid request
+    }
+    else {
+      console.log('invalid input');
+      // reject invalid request
+    }
+  }
+```
 * Other packages already included for use:
   * [bcrypt-nodejs] (https://www.npmjs.com/package/bcrypt-nodejs) for hashing passwords
   * [request] (https://www.npmjs.com/package/request) for super easy external API calls

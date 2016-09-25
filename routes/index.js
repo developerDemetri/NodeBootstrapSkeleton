@@ -7,6 +7,8 @@ let aes_tool = require('../bin/aes_tool');
 let bcrypt = require('bcrypt-nodejs');
 let redis_tool = require('../bin/redis_tool');
 let session_tool = require('../bin/session_tool');
+let validator_tool = require('../bin/validator_tool');
+let checkInput = validator_tool.checkInput;
 
 let router = express.Router();
 
